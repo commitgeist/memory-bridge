@@ -3,7 +3,7 @@ import { mkdtempSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
-import { addMemory, loadIndex, searchMemory, syncAntigravity } from "../dist/index.js";
+import { addMemory, loadIndex, searchMemory, syncAntigravity, syncOpencode } from "../dist/index.js";
 
 test("creates readable versioned store and searches by text or tag", () => {
   const directory = mkdtempSync(join(tmpdir(), "memory-bridge-"));
@@ -25,4 +25,12 @@ test("projects neutral memory into Antigravity input", () => {
   const output = syncAntigravity(directory);
   assert.equal(output, ".gemini/memory-bridge.md");
   assert.match(readFileSync(join(directory, output), "utf8"), /Terraform providers need pinned versions/);
+});
+
+test("projects neutral memory into OpenCode file", () => {
+  const directory = mkdtempSync(join(tmpdir(), "memory-bridge-"));
+  addMemory(directory, "OpenCode prefers explicit permissions.", ["opencode"]);
+  const output = syncOpencode(directory);
+  assert.equal(output, ".opencode/memory-bridge.md");
+  assert.match(readFileSync(join(directory, output), "utf8"), /OpenCode prefers explicit permissions/);
 });
