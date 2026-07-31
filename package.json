@@ -1,21 +1,54 @@
 {
   "name": "memory-bridge",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Versioned, neutral project memory shared across agent harnesses.",
   "license": "MIT",
   "author": "Commitgeist",
   "type": "module",
-  "bin": { "memory-bridge": "dist/cli.js" },
-  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
-  "files": ["dist", "README.md", "LICENSE"],
+  "bin": {
+    "memory-bridge": "dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "test": "npm run build && node --test test/index.test.mjs",
     "prepublishOnly": "npm run typecheck && npm test"
   },
-  "keywords": ["opencode", "memory", "agents", "antigravity", "claude-code"],
-  "peerDependencies": { "@opencode-ai/plugin": "^1.1.50" },
-  "devDependencies": { "@opencode-ai/plugin": "^1.1.50", "@types/node": "^22.10.0", "typescript": "^5.9.3" },
-  "engines": { "node": ">=20" }
+  "keywords": [
+    "opencode",
+    "memory",
+    "agents",
+    "antigravity",
+    "claude-code"
+  ],
+  "peerDependencies": {
+    "@opencode-ai/plugin": "^1.1.50"
+  },
+  "devDependencies": {
+    "@opencode-ai/plugin": "^1.1.50",
+    "@types/node": "^22.10.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/commitgeist/opencode-memory-bridge.git"
+  },
+  "homepage": "https://github.com/commitgeist/opencode-memory-bridge#readme",
+  "bugs": {
+    "url": "https://github.com/commitgeist/opencode-memory-bridge/issues"
+  }
 }
